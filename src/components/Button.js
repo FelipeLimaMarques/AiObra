@@ -19,10 +19,12 @@ const styles = StyleSheet.create({
         padding: 10,
         marginRight: 6,
         height: 40,
-        backgroundColor: 'red',
+        backgroundColor: '#e32b2b',
+        borderColor: "#ededed",
+        borderWidth: 1,
         borderRadius: 3
     },
     buttonText: {
-        color: 'white'
+        color: '#ededed'
     }
 })

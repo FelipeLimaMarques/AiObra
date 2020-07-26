@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#29405c',
+        backgroundColor: '#ededed',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
@@ -19,8 +19,9 @@ export default StyleSheet.create({
         paddingTop: 10,
     },
     sendView: {
-        backgroundColor: '#3d597a',
+        backgroundColor: '#e32b2b',
         alignContent: 'flex-start',
+        justifyContent: 'space-between',
         height: 50,
         width: '100%',
         marginTop: 5,
@@ -30,12 +31,12 @@ export default StyleSheet.create({
     formContainer: {
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        backgroundColor: '#3d597a',
+        backgroundColor: '#e32b2b',
         padding: 10,
         marginBottom: 5,
         marginHorizontal: 4,
         height: 'auto',
-        width: '100%',
+        width: '97.5%',
         overflow: 'hidden',
         borderRadius: 3
     },
@@ -47,9 +48,7 @@ export default StyleSheet.create({
     },
     inputShape: {
         alignItems: 'flex-start',
-        paddingLeft: 10,
-        paddingRight: 10,
-        marginRight: 10,
+        paddingHorizontal: 10,
         height: 30,
         backgroundColor: 'white',
         borderRadius: 3

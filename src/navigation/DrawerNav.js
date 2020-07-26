@@ -4,7 +4,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 
 // Navigators
 import MainNav from './MainNav'
-import PreviousNav from './PreviousNav'
 
 const Drawer = createDrawerNavigator();
 
@@ -12,32 +11,23 @@ export default function DrawerNav () {
     return (
         <NavigationContainer>
             <Drawer.Navigator
-                initialRouteName="Home"
+                initialRouteName="Requests"
                 drawerStyle={{
-                    backgroundColor: "#29405c",
+                    backgroundColor: "#b82525",
                     width: '40%',
-                    height: '78%',
-                    marginTop: 80
+                    height: '100%',
                 }}
                 drawerContentOptions={{
-                    activeTintColor: 'white',
+                    activeTintColor: '#b82525',
                     inactiveTintColor: 'white',
-                    activeBackgroundColor: '#3d597a'
+                    activeBackgroundColor: 'white'
                 }}
-                overlayColor='transparent'
             >
                 <Drawer.Screen
-                    name="Home"
+                    name="Requests"
                     component={MainNav}
                     options={{
-                        title: 'Home'
-                    }}
-                />
-                <Drawer.Screen
-                    name="PreviousNav"
-                    component={PreviousNav}
-                    options={{
-                        title: 'Histórico'
+                        title: 'Pedidos'
                     }}
                 />
             </Drawer.Navigator>

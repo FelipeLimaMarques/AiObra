@@ -5,33 +5,33 @@ import { createStackNavigator } from '@react-navigation/stack'
 import DrawerButton from '../components/DrawerButton'
 
 // Screens
-import Home from '../screens/Home'
-import Confirmation from '../screens/Confirmation'
+import Requests from '../screens/Requests'
+import CreateKit from '../screens/CreateKit'
 
 const Stack = createStackNavigator();
 
 export default function MainNav () {
     return (
             <Stack.Navigator
-                initialRouteName="Home"
+                initialRouteName="Requests"
                 screenOptions={{
                     headerStyle: {
-                        backgroundColor: '#3d597a',
+                        backgroundColor: '#e32b2b',
                     },
                     headerTintColor: 'white',
                     headerLeft: () => <DrawerButton />
                 }}
             >
                 <Stack.Screen
-                    name='Home' component={Home}
+                    name='Requests' component={Requests}
                     options={{
-                        title: 'Home',
+                        title: 'Pedidos',
                     }}
                 />
                 <Stack.Screen
-                    name='Confirmation' component={Confirmation}
+                    name='CreateKit' component={CreateKit}
                     options={{
-                        title: 'Confirmação',
+                        title: 'Criação de Kit',
                     }}
                 />
             </Stack.Navigator>
