@@ -42,6 +42,8 @@ export default StyleSheet.create({
     },
     row: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignContent: 'space-between'
     },
     inputLabel: {
         color: 'white'
@@ -50,6 +52,7 @@ export default StyleSheet.create({
         alignItems: 'flex-start',
         paddingHorizontal: 10,
         height: 30,
+        marginLeft: 10,
         backgroundColor: 'white',
         borderRadius: 3
     },

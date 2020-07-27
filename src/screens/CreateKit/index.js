@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView, TextInput, Text, StatusBar } from 'react-native'
+import { View, ScrollView, TextInput, Text, StatusBar, Picker } from 'react-native'
 import { Formik } from 'formik'
 
 // Components
 import Button from '../../components/Button'
 import KitPicker from '../../components/KitPicker'
-import FakePicker from '../../components/FakePicker'
 
 // Styles
 import styles from './styles'
@@ -24,7 +23,7 @@ export default function CreateKit({ navigation }) {
             <Formik
                 initialValues={{
                     kit:
-                        { etapa: '', local: '', data: '', material: [''] },
+                        { etapa: '', local: '', data: '', material: [{ tipo: '', quantidade: '' }] },
                 }}
                 onSubmit={values => {
                     console.log(
@@ -42,7 +41,12 @@ export default function CreateKit({ navigation }) {
                         <ScrollView>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Etapa:</Text>
-                                <KitPicker />
+                                <KitPicker>
+                                    <Picker.Item label="--" value="none" />
+                                    <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
+                                    <Picker.Item label="2º Pavimento" value="local" />
+                                    <Picker.Item label="20/10/2020" value="data" />
+                                </KitPicker>
                                 {/*
                                 <View style={[styles.inputShape, { width: 330 }]}>
                                     <TextInput
@@ -58,7 +62,12 @@ export default function CreateKit({ navigation }) {
                             </View>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Local:</Text>
-                                <KitPicker />
+                                <KitPicker>
+                                    <Picker.Item label="--" value="none" />
+                                    <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
+                                    <Picker.Item label="2º Pavimento" value="local" />
+                                    <Picker.Item label="20/10/2020" value="data" />
+                                </KitPicker>
                                 {/*
                                 <View style={[styles.inputShape, { width: 330 }]}>
                                     <TextInput
@@ -73,7 +82,12 @@ export default function CreateKit({ navigation }) {
                             </View>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Data:</Text>
-                                <KitPicker />
+                                <KitPicker>
+                                    <Picker.Item label="--" value="none" />
+                                    <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
+                                    <Picker.Item label="2º Pavimento" value="local" />
+                                    <Picker.Item label="20/10/2020" value="data" />
+                                </KitPicker>
                                 {/* 
                                 <View style={[styles.inputShape, { width: 330 }]}>
                                     <TextInput
@@ -88,18 +102,25 @@ export default function CreateKit({ navigation }) {
                             {
                                 state.map((index) => {
                                     return <View key={index} style={styles.formContainer}>
-                                                <Text style={styles.inputLabel}>Material:</Text>
-                                                <FakePicker />
-                                                {/*
-                                                <View style={[styles.inputShape, { width: 330 }]}>
-                                                    <TextInput
-                                                        style={styles.inputText}
-                                                        defaultValue=''
-                                                        onChangeText={handleChange(`kit.material[${index}]`)}
-                                                        maxLength={40}
-                                                    />
-                                                </View>
-                                                */}
+                                        <Text style={styles.inputLabel}>Material:</Text>
+                                        <View style={styles.row}>
+                                            <KitPicker>
+                                                <Picker.Item label="--" value="none" />
+                                                <Picker.Item label="Colher de pedreiro" value="material1" />
+                                                <Picker.Item label="Furadeira" value="material2" />
+                                                <Picker.Item label="Parafusadeira" value="material3" />
+                                                <Picker.Item label="Perfuratriz" value="material4" />
+                                            </KitPicker>
+                                            <View style={[styles.inputShape, { width: 100 }]}>
+                                                <TextInput
+                                                    style={styles.inputText}
+                                                    defaultValue=''
+                                                    onChangeText={handleChange(`kit.material[${index}].quantidade`)}
+                                                    maxLength={3}
+                                                    keyboardType={'numeric'}
+                                                />
+                                            </View>
+                                        </View>
                                     </View>
                                 })
                             }

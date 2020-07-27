@@ -7,14 +7,12 @@ const KitPicker = (props) => {
     return (
         <View style={styles.pickerShape}>
             <Picker
+                mode="dropdown"
                 selectedValue={selectedValue}
                 style={styles.pickerSize}
                 onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
             >
-                <Picker.Item label="--" value="none" />
-                <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
-                <Picker.Item label="2º Pavimento" value="local" />
-                <Picker.Item label="20/10/2020" value="data" />
+                {props.children}
             </Picker>
         </View>
     )
