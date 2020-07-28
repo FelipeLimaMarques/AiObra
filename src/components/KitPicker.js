@@ -5,7 +5,7 @@ const KitPicker = (props) => {
     const [selectedValue, setSelectedValue] = useState("none");
 
     return (
-        <View style={styles.pickerShape}>
+        <View style={[styles.pickerShape, { width: props.width }]}>
             <Picker
                 mode="dropdown"
                 selectedValue={selectedValue}
@@ -23,16 +23,15 @@ export default KitPicker
 const styles = StyleSheet.create({
     pickerShape: {
         alignItems: 'flex-start',
-        paddingHorizontal: 10,
+        paddingHorizontal: 1,
         paddingVertical: 5,
         height: 50,
-        width: '100%',
         backgroundColor: 'white',
-        borderRadius: 3
+        borderRadius: 3,
     },
     pickerSize: {
         width: "100%",
-        height: "100%"
+        height: "100%",
     },
     pickerLabel: {
         

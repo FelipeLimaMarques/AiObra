@@ -41,11 +41,9 @@ export default function CreateKit({ navigation }) {
                         <ScrollView>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Etapa:</Text>
-                                <KitPicker>
+                                <KitPicker width='100%'>
                                     <Picker.Item label="--" value="none" />
                                     <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
-                                    <Picker.Item label="2º Pavimento" value="local" />
-                                    <Picker.Item label="20/10/2020" value="data" />
                                 </KitPicker>
                                 {/*
                                 <View style={[styles.inputShape, { width: 330 }]}>
@@ -62,11 +60,9 @@ export default function CreateKit({ navigation }) {
                             </View>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Local:</Text>
-                                <KitPicker>
+                                <KitPicker width='100%'>
                                     <Picker.Item label="--" value="none" />
-                                    <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
                                     <Picker.Item label="2º Pavimento" value="local" />
-                                    <Picker.Item label="20/10/2020" value="data" />
                                 </KitPicker>
                                 {/*
                                 <View style={[styles.inputShape, { width: 330 }]}>
@@ -82,10 +78,8 @@ export default function CreateKit({ navigation }) {
                             </View>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Data:</Text>
-                                <KitPicker>
+                                <KitPicker width='100%'>
                                     <Picker.Item label="--" value="none" />
-                                    <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
-                                    <Picker.Item label="2º Pavimento" value="local" />
                                     <Picker.Item label="20/10/2020" value="data" />
                                 </KitPicker>
                                 {/* 
@@ -102,23 +96,37 @@ export default function CreateKit({ navigation }) {
                             {
                                 state.map((index) => {
                                     return <View key={index} style={styles.formContainer}>
-                                        <Text style={styles.inputLabel}>Material:</Text>
                                         <View style={styles.row}>
-                                            <KitPicker>
-                                                <Picker.Item label="--" value="none" />
-                                                <Picker.Item label="Colher de pedreiro" value="material1" />
-                                                <Picker.Item label="Furadeira" value="material2" />
-                                                <Picker.Item label="Parafusadeira" value="material3" />
-                                                <Picker.Item label="Perfuratriz" value="material4" />
-                                            </KitPicker>
-                                            <View style={[styles.inputShape, { width: 100 }]}>
-                                                <TextInput
-                                                    style={styles.inputText}
-                                                    defaultValue=''
-                                                    onChangeText={handleChange(`kit.material[${index}].quantidade`)}
-                                                    maxLength={3}
-                                                    keyboardType={'numeric'}
-                                                />
+                                            <View style={{ width: '55%'}}>
+                                                <Text style={styles.inputLabel}>Material:</Text>
+                                                <KitPicker>
+                                                    <Picker.Item label="--" value="none" />
+                                                    <Picker.Item label="Colher de pedreiro" value="material1" />
+                                                    <Picker.Item label="Furadeira" value="material2" />
+                                                    <Picker.Item label="Parafusadeira" value="material3" />
+                                                    <Picker.Item label="Perfuratriz" value="material4" />
+                                                </KitPicker>
+                                            </View>
+                                            <View style={{ width: '18%'}}>
+                                                <Text style={styles.inputLabel}>Qtd.:</Text>
+                                                <View style={[styles.inputShape, { width: '83%'}]}>
+                                                    <TextInput
+                                                        style={styles.inputText}
+                                                        defaultValue=''
+                                                        onChangeText={handleChange(`kit.material[${index}].quantidade`)}
+                                                        maxLength={3}
+                                                        keyboardType={'numeric'}
+                                                    />
+                                                </View>
+                                            </View>
+                                            <View style={{ width: '27%'}}>
+                                                <Text style={styles.inputLabel}>Unidade:</Text>
+                                                <KitPicker>
+                                                    <Picker.Item label="--" value="none" />
+                                                    <Picker.Item label="u." value="unidades" />
+                                                    <Picker.Item label="Kg" value="kilograma" />
+                                                    <Picker.Item label="T" value="tonelada" />
+                                                </KitPicker>
                                             </View>
                                         </View>
                                     </View>

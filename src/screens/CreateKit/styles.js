@@ -40,6 +40,10 @@ export default StyleSheet.create({
         overflow: 'hidden',
         borderRadius: 3
     },
+    materialContainer: {
+        justifyContent: 'space-between',
+        alignContent: 'flex-start'
+    },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -51,8 +55,9 @@ export default StyleSheet.create({
     inputShape: {
         alignItems: 'flex-start',
         paddingHorizontal: 10,
-        height: 30,
-        marginLeft: 10,
+        paddingVertical: 5,
+        marginHorizontal: 5,
+        height: 50,
         backgroundColor: 'white',
         borderRadius: 3
     },
