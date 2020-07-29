@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 
 // Navigators
 import MainNav from './MainNav'
+import ReportNav from './ReportNav'
 
 const Drawer = createDrawerNavigator();
 
@@ -28,6 +29,13 @@ export default function DrawerNav () {
                     component={MainNav}
                     options={{
                         title: 'Pedidos'
+                    }}
+                />
+                <Drawer.Screen
+                    name="ReportList"
+                    component={ReportNav}
+                    options={{
+                        title: 'Relatórios'
                     }}
                 />
             </Drawer.Navigator>

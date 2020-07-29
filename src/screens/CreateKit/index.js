@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView, TextInput, Text, StatusBar, Picker } from 'react-native'
+import { View, ScrollView, TextInput, Text, StatusBar, Picker, AsyncStorage } from 'react-native'
 import { Formik } from 'formik'
 
 // Components
@@ -8,6 +8,32 @@ import KitPicker from '../../components/KitPicker'
 
 // Styles
 import styles from './styles'
+
+// AsyncStorage functions
+saveKit = async (key, item) => {
+    try {
+      await AsyncStorage.setItem(
+        key,
+        item
+      );
+    } catch (error) {
+      // Error saving data
+      console.log('Error on AsyncStorage.setItem')
+    }
+}
+
+getKit = async (key) => {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      if (value !== null) {
+        // We have data!!
+        console.log(value);
+      }
+    } catch (error) {
+      // Error retrieving data
+      console.log('Error on AsyncStorage.getItem')
+    }
+}
 
 export default function CreateKit({ navigation }) {
     const [state, setState] = useState([0])
@@ -23,7 +49,11 @@ export default function CreateKit({ navigation }) {
             <Formik
                 initialValues={{
                     kit:
-                        { etapa: '', local: '', data: '', material: [{ tipo: '', quantidade: '' }] },
+                        {
+                            etapa: '', local: '', data: '', material: [{
+                                    tipo: '', quantidade: '', unidade: ''
+                                }]
+                        },
                 }}
                 onSubmit={values => {
                     console.log(
@@ -33,15 +63,20 @@ export default function CreateKit({ navigation }) {
                         Data: ${values.kit.data}
                         Material 1: ${values.kit.material[0]}`
                     )
-                    navigation.goBack({ obj: values })
+                    navigation.goBack()
                 }}
             >
-                {({ values, handleChange, handleSubmit }) => (
+                {({ values, handleChange, handleSubmit, setFieldValue }) => (
                     <View style={styles.scrollContainer}>
                         <ScrollView>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Etapa:</Text>
-                                <KitPicker width='100%'>
+                                <KitPicker width='100%'
+                                    onValueChange={(itemValue) => {
+                                        setSelectedValue(itemValue)
+                                        setFieldValue('kit.etapa', itemValue)
+                                    }}
+                                >
                                     <Picker.Item label="--" value="none" />
                                     <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
                                 </KitPicker>
@@ -60,7 +95,7 @@ export default function CreateKit({ navigation }) {
                             </View>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Local:</Text>
-                                <KitPicker width='100%'>
+                                <KitPicker width='100%' type={'kit.local'}>
                                     <Picker.Item label="--" value="none" />
                                     <Picker.Item label="2º Pavimento" value="local" />
                                 </KitPicker>
@@ -78,7 +113,7 @@ export default function CreateKit({ navigation }) {
                             </View>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Data:</Text>
-                                <KitPicker width='100%'>
+                                <KitPicker width='100%' type={'kit.data'}>
                                     <Picker.Item label="--" value="none" />
                                     <Picker.Item label="20/10/2020" value="data" />
                                 </KitPicker>
@@ -99,7 +134,7 @@ export default function CreateKit({ navigation }) {
                                         <View style={styles.row}>
                                             <View style={{ width: '55%'}}>
                                                 <Text style={styles.inputLabel}>Material:</Text>
-                                                <KitPicker>
+                                                <KitPicker type={`kit.material[${index}].tipo`}>
                                                     <Picker.Item label="--" value="none" />
                                                     <Picker.Item label="Colher de pedreiro" value="material1" />
                                                     <Picker.Item label="Furadeira" value="material2" />
@@ -121,11 +156,11 @@ export default function CreateKit({ navigation }) {
                                             </View>
                                             <View style={{ width: '27%'}}>
                                                 <Text style={styles.inputLabel}>Unidade:</Text>
-                                                <KitPicker>
+                                                <KitPicker type={`kit.material[${index}].unidade`}>
                                                     <Picker.Item label="--" value="none" />
                                                     <Picker.Item label="u." value="unidades" />
-                                                    <Picker.Item label="Kg" value="kilograma" />
-                                                    <Picker.Item label="T" value="tonelada" />
+                                                    <Picker.Item label="Kg" value="kilogramas" />
+                                                    <Picker.Item label="T" value="toneladas" />
                                                 </KitPicker>
                                             </View>
                                         </View>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Picker, Text, StyleSheet, View } from 'react-native'
+import { Formik } from 'formik'
 
 const KitPicker = (props) => {
     const [selectedValue, setSelectedValue] = useState("none");
@@ -10,7 +11,7 @@ const KitPicker = (props) => {
                 mode="dropdown"
                 selectedValue={selectedValue}
                 style={styles.pickerSize}
-                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                onValueChange={props.onValueChange}
             >
                 {props.children}
             </Picker>
