@@ -7,16 +7,13 @@ export default StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
-    buttonRow: {
-        flexDirection: 'row',
-        marginHorizontal: 4
-    },
     scrollContainer: {
         flex: 1,
         justifyContent: 'space-between',
         width: '100%',
         height: 'auto',
-        paddingTop: 10,
+        paddingTop: 5,
+        paddingHorizontal: 5,
     },
     sendView: {
         backgroundColor: '#e32b2b',
@@ -26,43 +23,11 @@ export default StyleSheet.create({
         width: '100%',
         marginTop: 5,
         padding: 5,
-        flexDirection: 'row-reverse'
+        flexDirection: 'row'
     },
-    formContainer: {
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        backgroundColor: '#e32b2b',
-        padding: 10,
-        marginBottom: 5,
-        marginHorizontal: 4,
-        height: 'auto',
-        width: '97.5%',
-        overflow: 'hidden',
-        borderRadius: 3
-    },
-    materialContainer: {
-        justifyContent: 'space-between',
-        alignContent: 'flex-start'
-    },
-    row: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignContent: 'space-between'
-    },
-    inputLabel: {
-        color: 'white'
-    },
-    inputShape: {
-        alignItems: 'flex-start',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        marginHorizontal: 5,
-        height: 50,
-        backgroundColor: 'white',
-        borderRadius: 3
-    },
-    inputText: {
-        width: '100%',
-        height: '100%'
-    },
+    head: {  height: 40,  backgroundColor: '#fff'  },
+    wrapper: { flexDirection: 'row' },
+    title: { flex: 1, backgroundColor: '#fff' },
+    row: {  height: 50, backgroundColor: '#fff'  },
+    text: { textAlign: 'center' }
 })

@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Picker, Text, StyleSheet, View } from 'react-native'
-import { Formik } from 'formik'
 
 const KitPicker = (props) => {
     const [selectedValue, setSelectedValue] = useState("none");
 
+    const setFieldValue = props.sfv
     return (
         <View style={[styles.pickerShape, { width: props.width }]}>
             <Picker
                 mode="dropdown"
                 selectedValue={selectedValue}
                 style={styles.pickerSize}
-                onValueChange={props.onValueChange}
+                onValueChange={(itemValue) => {
+                    setSelectedValue(itemValue)
+                    setFieldValue(props.field, itemValue)
+                }}
             >
                 {props.children}
             </Picker>

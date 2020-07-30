@@ -31,6 +31,7 @@ export default StyleSheet.create({
     formContainer: {
         alignItems: 'flex-start',
         justifyContent: 'space-between',
+        flexDirection: 'row',
         backgroundColor: '#e32b2b',
         padding: 10,
         marginBottom: 5,
@@ -40,14 +41,8 @@ export default StyleSheet.create({
         overflow: 'hidden',
         borderRadius: 3
     },
-    materialContainer: {
-        justifyContent: 'space-between',
-        alignContent: 'flex-start'
-    },
     row: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignContent: 'space-between'
     },
     inputLabel: {
         color: 'white'
@@ -55,9 +50,7 @@ export default StyleSheet.create({
     inputShape: {
         alignItems: 'flex-start',
         paddingHorizontal: 10,
-        paddingVertical: 5,
-        marginHorizontal: 5,
-        height: 50,
+        height: 30,
         backgroundColor: 'white',
         borderRadius: 3
     },
@@ -65,4 +58,14 @@ export default StyleSheet.create({
         width: '100%',
         height: '100%'
     },
+    kitLabel: {
+        color: 'white',
+        fontSize: 20,
+    },
+    kitContainer: {
+        alignContent: 'flex-end',
+        justifyContent: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+    }
 })

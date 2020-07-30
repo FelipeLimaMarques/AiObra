@@ -31,7 +31,7 @@ export default function ReportNav () {
                 <Stack.Screen
                     name='ReportInfo' component={ReportInfo}
                     options={{
-                        title: 'Relatório',
+                        title: '20/04/2020 ~ 10/05/2020',
                     }}
                 />
             </Stack.Navigator>

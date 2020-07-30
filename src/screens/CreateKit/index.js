@@ -50,7 +50,7 @@ export default function CreateKit({ navigation }) {
                 initialValues={{
                     kit:
                         {
-                            etapa: '', local: '', data: '', material: [{
+                            etapa: '', local: '', data: '', dataLimite: '', material: [{
                                     tipo: '', quantidade: '', unidade: ''
                                 }]
                         },
@@ -60,8 +60,11 @@ export default function CreateKit({ navigation }) {
                         `Submitting back to Requests:
                         Etapa: ${values.kit.etapa}
                         Local: ${values.kit.local}
-                        Data: ${values.kit.data}
-                        Material 1: ${values.kit.material[0]}`
+                        Data: ${values.kit.data} ~ ${values.kit.dataLimite}
+                        Material 1:
+                        Tipo: ${values.kit.material[0].tipo}
+                        Qtd: ${values.kit.material[0].quantidade}
+                        Unidade: ${values.kit.material[0].unidade}`
                     )
                     navigation.goBack()
                 }}
@@ -72,61 +75,43 @@ export default function CreateKit({ navigation }) {
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Etapa:</Text>
                                 <KitPicker width='100%'
-                                    onValueChange={(itemValue) => {
-                                        setSelectedValue(itemValue)
-                                        setFieldValue('kit.etapa', itemValue)
-                                    }}
+                                    field='kit.etapa'
+                                    sfv={setFieldValue}
                                 >
                                     <Picker.Item label="--" value="none" />
-                                    <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="etapa" />
+                                    <Picker.Item label="60.007 - FERRAMENTAS/EQUIPAMENTOS" value="60.007" />
                                 </KitPicker>
-                                {/*
-                                <View style={[styles.inputShape, { width: 330 }]}>
-                                    <TextInput
-                                        style={styles.inputText}
-                                        defaultValue=''
-                                        onChangeText={handleChange(`kit.etapa`)}
-                                        maxLength={8}
-                                        keyboardType={'numeric'}
-                                    />
-                                </View>
-                                */
-                                }
                             </View>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Local:</Text>
-                                <KitPicker width='100%' type={'kit.local'}>
+                                <KitPicker width='100%' 
+                                    field='kit.local'
+                                    sfv={setFieldValue}
+                                >
                                     <Picker.Item label="--" value="none" />
-                                    <Picker.Item label="2º Pavimento" value="local" />
+                                    <Picker.Item label="2º Pavimento" value="pavimento2" />
                                 </KitPicker>
-                                {/*
-                                <View style={[styles.inputShape, { width: 330 }]}>
-                                    <TextInput
-                                        style={styles.inputText}
-                                        defaultValue=''
-                                        onChangeText={handleChange(`kit.local`)}
-                                        maxLength={22}
-                                    />
-                                </View>
-                                */
-                                }
                             </View>
                             <View style={styles.formContainer}>
                                 <Text style={styles.inputLabel}>Data:</Text>
-                                <KitPicker width='100%' type={'kit.data'}>
+                                <KitPicker width='100%' 
+                                    field='kit.data'
+                                    sfv={setFieldValue}
+                                >
                                     <Picker.Item label="--" value="none" />
-                                    <Picker.Item label="20/10/2020" value="data" />
+                                    <Picker.Item label="20/10/2020" value="20/10/2020" />
                                 </KitPicker>
-                                {/* 
-                                <View style={[styles.inputShape, { width: 330 }]}>
-                                    <TextInput
-                                        style={styles.inputText}
-                                        defaultValue=''
-                                        onChangeText={handleChange(`kit.data`)}
-                                        maxLength={40}
-                                    />
-                                </View>
-                                */}
+                            </View>
+                            <View style={styles.formContainer}>
+                                <Text style={styles.inputLabel}>Data Limite:</Text>
+                                <KitPicker width='100%' 
+                                    field='kit.dataLimite'
+                                    sfv={setFieldValue}
+                                >
+                                    <Picker.Item label="--" value="none" />
+                                    <Picker.Item label="24/10/2020" value="24/10/2020" />
+                                    <Picker.Item label="30/10/2020" value="30/10/2020" />
+                                </KitPicker>
                             </View>
                             {
                                 state.map((index) => {
@@ -134,12 +119,15 @@ export default function CreateKit({ navigation }) {
                                         <View style={styles.row}>
                                             <View style={{ width: '55%'}}>
                                                 <Text style={styles.inputLabel}>Material:</Text>
-                                                <KitPicker type={`kit.material[${index}].tipo`}>
+                                                <KitPicker 
+                                                    field={`kit.material[${index}].tipo`}
+                                                    sfv={setFieldValue}
+                                                >
                                                     <Picker.Item label="--" value="none" />
-                                                    <Picker.Item label="Colher de pedreiro" value="material1" />
-                                                    <Picker.Item label="Furadeira" value="material2" />
-                                                    <Picker.Item label="Parafusadeira" value="material3" />
-                                                    <Picker.Item label="Perfuratriz" value="material4" />
+                                                    <Picker.Item label="Colher de pedreiro" value="colherPedreiro" />
+                                                    <Picker.Item label="Furadeira" value="furadeira" />
+                                                    <Picker.Item label="Parafusadeira" value="parafusadeira" />
+                                                    <Picker.Item label="Perfuratriz" value="perfuratriz" />
                                                 </KitPicker>
                                             </View>
                                             <View style={{ width: '18%'}}>
@@ -156,9 +144,12 @@ export default function CreateKit({ navigation }) {
                                             </View>
                                             <View style={{ width: '27%'}}>
                                                 <Text style={styles.inputLabel}>Unidade:</Text>
-                                                <KitPicker type={`kit.material[${index}].unidade`}>
+                                                <KitPicker 
+                                                    field={`kit.material[${index}].unidade`}
+                                                    sfv={setFieldValue}
+                                                >
                                                     <Picker.Item label="--" value="none" />
-                                                    <Picker.Item label="u." value="unidades" />
+                                                    <Picker.Item label="Und" value="unidades" />
                                                     <Picker.Item label="Kg" value="kilogramas" />
                                                     <Picker.Item label="T" value="toneladas" />
                                                 </KitPicker>

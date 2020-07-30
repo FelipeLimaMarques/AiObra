@@ -8,6 +8,44 @@ import Button from '../../components/Button'
 // Styles
 import styles from './styles'
 
+const check = (state, setState) => {
+    if (state.length == 0) {
+        return <View style={styles.noKitsContainer}>
+            <Text style={styles.noKitsText}>Não há kits criados.</Text>
+        </View>
+    } else {
+        return state.map((index) => {
+            return <View key={index} style={styles.formContainer}>
+                <TouchableOpacity
+                    style={styles.kitContainer}
+                    onPress={() => navigation.navigate('CreateKit')}
+                >
+                    <Text style={styles.kitLabel}>Kit {index + 1}</Text>
+                </TouchableOpacity>
+                <View style={styles.row}>
+                    <Button
+                        text='Editar Kit'
+                        width={100}
+                        onPress={() => {
+                            console.log('yeet')
+                        }}
+                    />
+                    <Button
+                        text='Apagar Kit'
+                        width={100}
+                        onPress={() => {
+                            const old = [...state]
+                            old.splice(index, 1)
+                            setState(state => [...old])
+                        }}
+                    />
+                </View>
+            </View>
+        })
+
+    }
+}
+
 export default function Requests({ navigation }) {
     const [state, setState] = useState([])
 
@@ -42,35 +80,7 @@ export default function Requests({ navigation }) {
                     <View style={styles.scrollContainer}>
                         <ScrollView>
                             {
-                                state.map((index) => {
-                                    return <View key={index} style={styles.formContainer}>
-                                        <TouchableOpacity
-                                        style={styles.kitContainer}
-                                            onPress={() => navigation.navigate('CreateKit')}    
-                                        >
-                                            <Text style={styles.kitLabel}>Kit {index +1}</Text>
-                                        </TouchableOpacity>
-                                        <View style={styles.row}>
-                                            <Button
-                                                text='Editar Kit'
-                                                width={100}
-                                                onPress={() => {
-                                                    console.log('yeet')
-                                                }}
-                                            />
-                                            <Button
-                                                text='Apagar Kit'
-                                                width={100}
-                                                onPress={() => {
-                                                    const old = [...state]
-                                                    old.splice(index, 1)
-                                                    values.collection.pop()
-                                                    setState(state => [...old])
-                                                }}
-                                            />
-                                        </View>
-                                    </View>
-                                })
+                                check(state, setState)
                             }
                             <View style={styles.buttonRow}>
                                 <Button
@@ -81,13 +91,13 @@ export default function Requests({ navigation }) {
                                         setState(state => [...old, old.length])
                                     }}
                                 />
-                                
                             </View>
                         </ScrollView>
                         <View style={styles.sendView}>
                         </View>
                     </View>
-                )}
+                )
+                }
             </Formik>
         </View>
     )

@@ -41,6 +41,16 @@ export default StyleSheet.create({
         overflow: 'hidden',
         borderRadius: 3
     },
+    noKitsContainer: {
+        width: '100%',
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    noKitsText: {
+        color: '#7a7a7a',
+        fontStyle: 'italic'
+    },
     row: {
         flexDirection: 'row',
     },
