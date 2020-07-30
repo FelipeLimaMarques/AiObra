@@ -8,7 +8,7 @@ import Button from '../../components/Button'
 // Styles
 import styles from './styles'
 
-const check = (state, setState) => {
+const check = (state, setState, { navigation }) => {
     if (state.length == 0) {
         return <View style={styles.noKitsContainer}>
             <Text style={styles.noKitsText}>Não há kits criados.</Text>
@@ -80,7 +80,7 @@ export default function Requests({ navigation }) {
                     <View style={styles.scrollContainer}>
                         <ScrollView>
                             {
-                                check(state, setState)
+                                check(state, setState, { navigation })
                             }
                             <View style={styles.buttonRow}>
                                 <Button
